@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 class IndexController {
 
     @RequestMapping("/") open fun index(map: ModelMap): String {
-        map["username"] = "test"
         return "index"
     }
 }
