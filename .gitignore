@@ -1,6 +1,5 @@
 .gradle
 /build/
-!gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -105,4 +104,7 @@ gradle-app.setting
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+!gradle/wrapper/gradle-wrapper.jar
+
 
