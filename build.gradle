@@ -1,15 +1,17 @@
 buildscript {
 	ext {
 		h2Version = '1.4.196'
-		kotlinVersion = '1.1.3-2'
+		jfairyVersion = '0.3.0'
+		jqueryVersion = '3.2.1'
+		kotlinVersion = '1.1.50'
+		reactorVersion = '3.1.0.RELEASE'
 		semanticUiVersion = '2.2.10'
-		springBootVersion = '2.0.0.M2'
-        jqueryVersion = "3.2.1"
+		springBootVersion = '2.0.0.M4'
 	}
 	repositories {
 		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
+		maven { url 'https://repo.spring.io/snapshot' }
+		maven { url 'https://repo.spring.io/milestone' }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -20,37 +22,39 @@ buildscript {
 
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
-apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 compileKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions.jvmTarget = '1.8'
 }
 compileTestKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions.jvmTarget = '1.8'
 }
 
 repositories {
 	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
 }
 
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-data-cassandra-reactive')
+	compile("org.springframework.boot:spring-boot-devtools")
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    compile "com.h2database:h2:$h2Version"
+	compile "org.jfairy:jfairy:${jfairyVersion}"
+	compile "com.h2database:h2:$h2Version"
     compile "org.webjars:Semantic-UI:$semanticUiVersion"
     compile "org.webjars:jquery:$jqueryVersion"
-
+	compile "io.projectreactor:reactor-core:$reactorVersion"
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
