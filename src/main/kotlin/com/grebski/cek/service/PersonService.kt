@@ -18,7 +18,7 @@ class PersonService(val personRepository: PersonRepository) {
 
         val fairy = Fairy.create()
         val personsToSave = arrayListOf<Person>()
-        IntArray(noOfUsersToAdd).map { i ->
+        IntArray(noOfUsersToAdd).map {
             val fairyPerson = fairy.person()
             val personToSave = Person(
                     firstName = fairyPerson.firstName(),
@@ -36,6 +36,6 @@ class PersonService(val personRepository: PersonRepository) {
         val limit = pageSize ?: defaultPageSize
         return personRepository.findAllAndLimit(limit)
                 .collectList()
-                .block()
+                .block() ?: emptyList()
     }
 }
